@@ -177,5 +177,15 @@ void minToSec(int& minInput, int& secInput)
 
 int main()
 {
-   
+	int minutes = 0;
+	int seconds = 0;
+	int hours = 0;
+	int hourTens;
+	int hourUnits;
+	int minTens;
+	int minUnits;
+	int secTens;
+	int secUnits;
+	int randomColour;
+	cin >> seconds;
 }
