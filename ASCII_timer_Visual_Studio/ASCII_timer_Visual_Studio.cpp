@@ -1,13 +1,12 @@
 ﻿#include <iostream>
+#include <iomanip>
+#include <Windows.h>
 using namespace std;
 
 const int COLS = 10;
 const int ROWS = 11;
 
-const int numOfNums = 10;
-const int numOfLines = 11;
-
-const char* const codes[numOfNums][numOfLines] =
+const char* const digits[COLS][ROWS] =
 {
 	{
 	// digit 0 
@@ -197,4 +196,77 @@ int main()
 	{
 		minToHours(minutes, hours);
 	}
+
+STARTOFTIMER:
+	if (seconds >= 60)
+	{
+		secToMin(seconds, minutes);
+	}
+	if (minutes >= 60)
+	{
+		minToHours(minutes, hours);
+	}
+	if (minutes < 10)
+	{
+		minTens = 0;
+		minUnits = minutes % 10;
+		secTens = seconds / 10;
+		secUnits = seconds % 10;
+	}
+	else if (minutes >= 10 && minutes < 60) {
+		minTens = minutes / 10;
+		minUnits = minutes % 10;
+		secTens = seconds / 10;
+		secUnits = seconds % 10;
+	}
+	if (hours < 10)
+	{
+		hourTens = 0;
+		hourUnits = hours % 10;
+		minTens = minutes / 10;
+		minUnits = minutes % 10;
+		secTens = seconds / 10;
+		secUnits = seconds % 10;
+	}
+	else if (hours >= 10)
+	{
+		hourTens = hours / 10;
+		hourUnits = hours % 10;
+		minTens = minutes / 10;
+		minUnits = minutes % 10;
+		secTens = seconds / 10;
+		secUnits = seconds % 10;
+	}
+	for (int i = 0; i < ROWS; i++)
+	{
+		if (hours > 0)
+		{
+			cout << digits[hourTens][i];
+			cout << " ";
+			cout << digits[hourUnits][i];
+			cout << " ";
+			if (i == 4 || i == 7) cout << char(178);
+			else cout << " ";
+			cout << " ";
+		}
+		if (hours > 0 || minutes > 0)
+		{
+			cout << digits[minTens][i];
+			cout << " ";
+			cout << digits[minUnits][i];
+			cout << " ";
+			if (i == 4 || i == 7) cout << char(178);
+			else cout << " ";
+			cout << " ";
+		}
+		cout << digits[secTens][i];
+		cout << " ";
+		cout << digits[secUnits][i];
+		cout << " ";
+		cout << endl;
+	}
+	seconds--;
+	Sleep(1000);
+	system("cls");
+	goto STARTOFTIMER; 
 }
