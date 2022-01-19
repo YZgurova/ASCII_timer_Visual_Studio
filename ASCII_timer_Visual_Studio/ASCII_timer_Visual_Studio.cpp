@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <iomanip>
 #include <Windows.h>
+
 using namespace std;
 
 const int COLS = 10;
@@ -252,10 +253,10 @@ STARTOFTIMER:
 		if (hours > 0 || minutes > 0)
 		{
 			cout << digits[minTens][i];
-			cout << " ";
+		    cout << " ";
 			cout << digits[minUnits][i];
 			cout << " ";
-			if (i == 4 || i == 7) cout << char(178);
+		    if (i == 4 || i == 7) cout << char(178);
 			else cout << " ";
 			cout << " ";
 		}
@@ -269,4 +270,28 @@ STARTOFTIMER:
 	Sleep(1000);
 	system("cls");
 	goto STARTOFTIMER; 
+
+ENDOFTIMER:
+	for (int i = 0; i < ROWS; i++)
+	{
+		cout << string(20, ' ');
+		cout << digits[0][i];
+		cout << " ";
+		cout << digits[0][i];
+		cout << " ";
+		if (i == 4 || i == 7) cout << char(178);
+		else cout << " ";
+		cout << digits[0][i];
+		cout << " ";
+		cout << digits[0][i];
+		cout << " ";
+		if (i == 4 || i == 7) cout << char(178);
+		else cout << " ";
+		cout << " ";
+		cout << digits[0][i];
+		cout << " ";
+		cout << digits[0][i];
+		cout << " ";
+		cout << endl;
+	}
 }
