@@ -7,6 +7,9 @@ using namespace std;
 const int COLS = 10;
 const int ROWS = 11;
 
+HANDLE h = GetStdHandle(STD_OUTPUT_HANDLE);
+HWND handleWindow = GetConsoleWindow();
+
 const char* const digits[COLS][ROWS] =
 {
 	{
@@ -177,6 +180,7 @@ void minToSec(int& minInput, int& secInput)
 
 int main()
 {
+	SetWindowPos(handleWindow, 0, 0, 0, 800, 15 * 25, SWP_SHOWWINDOW | SWP_NOMOVE);
 	int minutes = 0;
 	int seconds = 0;
 	int hours = 0;
@@ -188,6 +192,7 @@ int main()
 	int secUnits;
 	int randomColour;
 	cin >> seconds;
+	system("cls");
 
 	while (seconds > 60)
 	{
@@ -206,6 +211,19 @@ STARTOFTIMER:
 	if (minutes >= 60)
 	{
 		minToHours(minutes, hours);
+	}
+	if (seconds < 0)
+	{
+		if (minutes > 0)
+		{
+			minToSec(minutes, seconds);
+		}
+		else if (hours > 0)
+		{
+			hoursToMin(hours, minutes);
+			minToSec(minutes, seconds);
+		}
+		else goto ENDOFTIMER;
 	}
 	if (minutes < 10)
 	{
@@ -240,6 +258,7 @@ STARTOFTIMER:
 	}
 	for (int i = 0; i < ROWS; i++)
 	{
+		cout << string(30, ' ');
 		if (hours > 0)
 		{
 			cout << digits[hourTens][i];
@@ -249,6 +268,10 @@ STARTOFTIMER:
 			if (i == 4 || i == 7) cout << char(178);
 			else cout << " ";
 			cout << " ";
+		}
+		if (hours == 0 && minutes < 15 && minutes>0)
+		{
+			SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY);
 		}
 		if (hours > 0 || minutes > 0)
 		{
@@ -260,12 +283,19 @@ STARTOFTIMER:
 			else cout << " ";
 			cout << " ";
 		}
+		if (hours == 0 && minutes == 0 && seconds > 9)
+		{
+			SetConsoleTextAttribute(h, FOREGROUND_RED | FOREGROUND_INTENSITY);
+		}
+
 		cout << digits[secTens][i];
 		cout << " ";
 		cout << digits[secUnits][i];
 		cout << " ";
 		cout << endl;
 	}
+	randomColour = 1 + (rand() % (15 - 1 + 1));
+	SetConsoleTextAttribute(h, randomColour | FOREGROUND_INTENSITY);
 	seconds--;
 	Sleep(1000);
 	system("cls");
