@@ -188,4 +188,13 @@ int main()
 	int secUnits;
 	int randomColour;
 	cin >> seconds;
+
+	while (seconds > 60)
+	{
+		secToMin(seconds, minutes);
+	}
+	while (minutes > 60)
+	{
+		minToHours(minutes, hours);
+	}
 }
