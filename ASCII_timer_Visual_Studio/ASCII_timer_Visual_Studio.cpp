@@ -324,4 +324,5 @@ ENDOFTIMER:
 		cout << " ";
 		cout << endl;
 	}
+PlaySound(TEXT("D:\\Домашни работи-ФМИ\\УП\\ASCII_timer_Visual_Studio\\ASCII_timer_Visual_Studio\\alarmsound.wav"), NULL, SND_SYNC);
 }
