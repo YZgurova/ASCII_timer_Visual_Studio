@@ -10,18 +10,18 @@ const int numOfLines = 11;
 const char* const codes[numOfNums][numOfLines] =
 {
 	{
-		// digit 0 
-		"0000000000",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0        0",
-		"0000000000"
+	// digit 0 
+	"0000000000",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0        0",
+	"0000000000"
 		},
 	// digit 1 
 	{
@@ -150,6 +150,30 @@ const char* const codes[numOfNums][numOfLines] =
 	"9999999999"
 	}
 };
+
+void hoursToMin(int& hoursInput, int& minsInput)
+{
+	hoursInput--;
+	minsInput += 60;
+}
+
+void minToHours(int& minsInput, int& hoursInput)
+{
+	hoursInput++;
+	minsInput -= 60;
+}
+
+void secToMin(int& secInput, int& minsInput) 
+{
+	minsInput++;
+	secInput -= 60;
+}
+
+void minToSec(int& minInput, int& secInput)
+{
+	minInput--;
+	secInput += 60;
+}
 
 int main()
 {
