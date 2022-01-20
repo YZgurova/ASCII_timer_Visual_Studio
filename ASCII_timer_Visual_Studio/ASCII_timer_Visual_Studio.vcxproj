@@ -142,6 +142,9 @@
   <ItemGroup>
     <ClCompile Include="ASCII_timer_Visual_Studio.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Timer.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

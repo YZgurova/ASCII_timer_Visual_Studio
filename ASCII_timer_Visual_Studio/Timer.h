@@ -27,7 +27,7 @@ const char* const digits[COLS][ROWS] =
 		"0        0",
 		"0        0",
 		"0000000000"
-			},
+				},
 	// digit 1 
 	{
 	"         1",
