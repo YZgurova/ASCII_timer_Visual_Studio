@@ -287,10 +287,15 @@ struct Timer
 			secTens = seconds / 10;
 			secUnits = seconds % 10;
 		}
-		//cout << endl << endl << endl<<endl<<endl;
+		cout << endl << endl << endl<<endl<<endl;
 		for (int i = 0; i < ROWS; i++)
 		{
-			cout << string(30, ' ');
+			if (hours > 0)
+				cout << string(20, ' ');
+			else if (hours == 0 && minutes > 0)
+				cout << string(30, ' ');
+			else
+				cout << string(40, ' ');
 			if (hours > 0)
 			{
 				cout << digits[hourTens][i];
