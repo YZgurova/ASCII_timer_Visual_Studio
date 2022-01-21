@@ -170,18 +170,6 @@ struct Timer
 	int randomColour;
 
 
-	void ConvertSeconds(int seconds)
-	{
-		while (seconds > 60)
-		{
-			secToMin(seconds, minutes);
-		}
-		while (minutes > 60)
-		{
-			minToHours(minutes, hours);
-		}
-	}
-
 	void hoursToMin(int& hoursInput, int& minsInput)
 	{
 		hoursInput--;
@@ -205,6 +193,19 @@ struct Timer
 		minInput--;
 		secInput += 60;
 	}
+
+	void ConvertSeconds()
+	{
+		while (seconds > 60)
+		{
+			secToMin(seconds, minutes);
+		}
+		while (minutes > 60)
+		{
+			minToHours(minutes, hours);
+		}
+	}
+
 	void EndOfTimer()
 	{
 		for (int i = 0; i < ROWS; i++)
@@ -234,7 +235,6 @@ struct Timer
 
 	void StartOfTimer()
 	{
-		SetWindowPos(handleWindow, 0, 0, 0, 800, 15 * 25, SWP_SHOWWINDOW | SWP_NOMOVE);
 		if (seconds >= 60)
 		{
 			secToMin(seconds, minutes);
@@ -287,6 +287,7 @@ struct Timer
 			secTens = seconds / 10;
 			secUnits = seconds % 10;
 		}
+		//cout << endl << endl << endl<<endl<<endl;
 		for (int i = 0; i < ROWS; i++)
 		{
 			cout << string(30, ' ');
@@ -325,8 +326,21 @@ struct Timer
 			cout << " ";
 			cout << endl;
 		}
-		if (seconds < 10)
+		if (hours == 0 && minutes == 0 && seconds < 10)
 		{
+			Sleep(1000);
+			system("cls");
+			SetConsoleTextAttribute(h, BLACKNESS | FOREGROUND_INTENSITY);
+			for (unsigned i = 0; i < ROWS; i++)
+			{
+				cout << ('\b');
+				cout << string(30, ' ');
+				cout << digits[0][i];
+				cout << " ";
+				cout << digits[secUnits][i];
+				cout << " ";
+				cout << endl;
+			}
 		}
 		randomColour = 1 + (rand() % (15 - 1 + 1));
 		SetConsoleTextAttribute(h, randomColour | FOREGROUND_INTENSITY);
